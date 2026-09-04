@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You — Understand Al-Quran With 300 Words</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --deep-emerald: #0B3D2E;
+      --dark-emerald: #062B20;
+      --emerald-light: #145A42;
+      --warm-ivory: #F8F4EA;
+      --soft-cream: #FFFDF7;
+      --elegant-gold: #C8A45D;
+      --soft-gold: #D8BC7A;
+      --light-gold: #E9E2D0;
+      --text-dark: #172019;
+      --text-light: #F8F4EA;
+      --shadow-sm: 0 2px 8px rgba(11, 61, 46, 0.06);
+      --shadow-md: 0 8px 32px rgba(11, 61, 46, 0.10);
+      --shadow-lg: 0 16px 48px rgba(11, 61, 46, 0.12);
+      --radius: 16px;
+      --radius-lg: 24px;
+      --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--warm-ivory);
+      color: var(--text-dark);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .thankyou-container {
+      width: 100%;
+      max-width: 600px;
+      background: var(--soft-cream);
+      border-radius: var(--radius-lg);
+      padding: 48px 40px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(200, 164, 93, 0.06);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .thankyou-container::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -30%;
+      width: 60%;
+      height: 60%;
+      background: radial-gradient(ellipse, rgba(200, 164, 93, 0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .thankyou-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+      display: block;
+      animation: bounceIn 0.8s ease;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.2); }
+      70% { transform: scale(0.9); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .thankyou-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--deep-emerald);
+      margin-bottom: 8px;
+    }
+
+    .thankyou-sub {
+      font-size: 16px;
+      color: #6a7a72;
+      margin-bottom: 24px;
+    }
+
+    .thankyou-divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(to right, var(--elegant-gold), var(--soft-gold));
+      margin: 0 auto 24px;
+      border-radius: 50px;
+    }
+
+    .download-box {
+      background: var(--warm-ivory);
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      border: 2px dashed var(--elegant-gold);
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .download-box .pdf-icon {
+      font-size: 48px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .download-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .download-box p {
+      font-size: 14px;
+      color: #6a7a72;
+      margin-bottom: 16px;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 40px;
+      background: var(--deep-emerald);
+      color: var(--text-light);
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 18px;
+      text-decoration: none;
+      transition: all var(--transition);
+      box-shadow: 0 4px 20px rgba(11, 61, 46, 0.25);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-download:hover {
+      background: var(--dark-emerald);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(11, 61, 46, 0.35);
+    }
+
+    .btn-download .arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .btn-download:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    .order-details {
+      font-size: 13px;
+      color: #8a9a92;
+      background: var(--warm-ivory);
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      margin-bottom: 16px;
+      text-align: left;
+      position: relative;
+      z-index: 1;
+    }
+
+    .order-details strong {
+      color: var(--text-dark);
+    }
+
+    .order-details .label {
+      display: inline-block;
+      width: 100px;
+      color: #8a9a92;
+    }
+
+    .help-text {
+      font-size: 13px;
+      color: #8a9a92;
+      position: relative;
+      z-index: 1;
+    }
+
+    .help-text a {
+      color: var(--deep-emerald);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .help-text a:hover {
+      text-decoration: underline;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin: 20px 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-item {
+      font-size: 12px;
+      color: #6a7a72;
+      background: var(--warm-ivory);
+      padding: 10px 8px;
+      border-radius: var(--radius);
+    }
+
+    .feature-item span {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 2px;
+    }
+
+    .whatsapp-support {
+      background: rgba(37, 211, 102, 0.06);
+      border: 1px solid rgba(37, 211, 102, 0.12);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #1a7a4a;
+      margin-top: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: all var(--transition);
+      position: relative;
+      z-index: 1;
+    }
+
+    .whatsapp-support:hover {
+      background: rgba(37, 211, 102, 0.1);
+      transform: scale(1.02);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .thankyou-container { padding: 32px 20px; }
+      .thankyou-title { font-size: 26px; }
+      .btn-download { width: 100%; justify-content: center; font-size: 16px; padding: 14px 20px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .order-details .label { width: 80px; }
+    }
+
+    /* Success animation for the page */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .thankyou-container > * {
+      animation: fadeUp 0.6s ease forwards;
+      opacity: 0;
+    }
+
+    .thankyou-container > *:nth-child(1) { animation-delay: 0.1s; }
+    .thankyou-container > *:nth-child(2) { animation-delay: 0.2s; }
+    .thankyou-container > *:nth-child(3) { animation-delay: 0.3s; }
+    .thankyou-container > *:nth-child(4) { animation-delay: 0.4s; }
+    .thankyou-container > *:nth-child(5) { animation-delay: 0.5s; }
+    .thankyou-container > *:nth-child(6) { animation-delay: 0.6s; }
+    .thankyou-container > *:nth-child(7) { animation-delay: 0.7s; }
+  </style>
+</head>
+<body>
+
+<div class="thankyou-container">
+
+  <!-- Success Icon -->
+  <span class="thankyou-icon">✅</span>
+
+  <!-- Title -->
+  <h1 class="thankyou-title">Payment Successful! 🎉</h1>
+  <p class="thankyou-sub">Thank you for purchasing <strong>"Understand Al-Quran With 300 Words"</strong></p>
+
+  <div class="thankyou-divider"></div>
+
+  <!-- Order Details -->
+  <div class="order-details">
+    <div><span class="label">📦 Product:</span> <strong>Understand Al-Quran With 300 Words</strong></div>
+    <div><span class="label">📅 Date:</span> <strong id="orderDate">Loading...</strong></div>
+    <div><span class="label">📧 Email:</span> <strong id="orderEmail">[Your Email]</strong></div>
+    <div><span class="label">💳 Status:</span> <strong style="color: #27ae60;">✓ Paid</strong></div>
+  </div>
+
+  <!-- Download Box -->
+  <div class="download-box">
+    <span class="pdf-icon">📄</span>
+    <h3>Your Ebook is Ready!</h3>
+    <p>Click the button below to download your PDF copy.</p>
+    <a href="#" class="btn-download" id="downloadBtn" onclick="downloadPDF()">
+      📥 Download PDF Now
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
+  <!-- Features -->
+  <div class="features-grid">
+    <div class="feature-item">
+      <span>📖</span>
+      300 Quranic Words
+    </div>
+    <div class="feature-item">
+      <span>🌙</span>
+      5 Learning Themes
+    </div>
+    <div class="feature-item">
+      <span>🕌</span>
+      Arabic + Roman Urdu
+    </div>
+  </div>
+
+  <!-- Support -->
+  <div style="position: relative; z-index: 1;">
+    <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" class="whatsapp-support" target="_blank">
+      💬 Need help? Chat with us on WhatsApp
+    </a>
+  </div>
+
+  <p class="help-text" style="margin-top: 16px;">
+    <a href="index.html">← Back to Home</a> &nbsp;·&nbsp; 
+    <a href="mailto:support@yourdomain.com">support@yourdomain.com</a>
+  </p>
+
+</div>
+
+<script>
+  /**
+   * ============================================================
+   * THANK YOU PAGE LOGIC
+   * ============================================================
+   */
+
+  // --- Set current date ---
+  document.getElementById('orderDate').textContent = new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+
+  // --- Get email from URL params ---
+  const urlParams = new URLSearchParams(window.location.search);
+  const email = urlParams.get('email') || '[Your Email]';
+  document.getElementById('orderEmail').textContent = email;
+
+  // --- Download PDF Function ---
+  function downloadPDF() {
+    // Option 1: If you have a real PDF file uploaded
+    // window.location.href = 'assets/understand-al-quran-300-words.pdf';
+
+    // Option 2: Generate a sample PDF (for demo)
+    // For now, we'll show a message and provide a link
+    const btn = document.getElementById('downloadBtn');
+    const originalText = btn.innerHTML;
+
+    // Check if we have a real PDF
+    const pdfUrl = 'assets/understand-al-quran-300-words.pdf';
+
+    // Try to fetch the PDF to see if it exists
+    fetch(pdfUrl, { method: 'HEAD' })
+      .then(response => {
+        if (response.ok) {
+          // PDF exists, download it
+          window.location.href = pdfUrl;
+        } else {
+          // PDF doesn't exist, show instruction
+          btn.innerHTML = '📄 File Not Found — Follow Instructions ↓';
+          btn.style.background = '#c0392b';
+
+          // Show instructions
+          const downloadBox = document.querySelector('.download-box');
+          const instructionDiv = document.createElement('div');
+          instructionDiv.style.cssText = `
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 16px;
+            text-align: left;
+            font-size: 14px;
+            color: #856404;
+          `;
+          instructionDiv.innerHTML = `
+            <strong>📌 How to add your PDF:</strong><br />
+            1. Upload your PDF file to the <strong>assets/</strong> folder<br />
+            2. Name it: <strong>understand-al-quran-300-words.pdf</strong><br />
+            3. Refresh this page and click download again<br /><br />
+            <small>Or contact support to get your download link.</small>
+          `;
+          downloadBox.appendChild(instructionDiv);
+
+          setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.style.background = '';
+          }, 5000);
+        }
+      })
+      .catch(() => {
+        // PDF doesn't exist, show instruction
+        btn.innerHTML = '📄 File Not Found — Follow Instructions ↓';
+        btn.style.background = '#c0392b';
+
+        const downloadBox = document.querySelector('.download-box');
+        const instructionDiv = document.createElement('div');
+        instructionDiv.style.cssText = `
+          background: #fff3cd;
+          border: 1px solid #ffc107;
+          border-radius: 12px;
+          padding: 16px;
+          margin-top: 16px;
+          text-align: left;
+          font-size: 14px;
+          color: #856404;
+        `;
+        instructionDiv.innerHTML = `
+          <strong>📌 How to add your PDF:</strong><br />
+          1. Upload your PDF file to the <strong>assets/</strong> folder<br />
+          2. Name it: <strong>understand-al-quran-300-words.pdf</strong><br />
+          3. Refresh this page and click download again
+        `;
+        downloadBox.appendChild(instructionDiv);
+
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.style.background = '';
+        }, 5000);
+      });
+  }
+
+  // --- Track Page View for Thank You ---
+  console.log('✅ Thank You Page Loaded — Payment Successful!');
+
+  // If Meta Pixel is installed, track Purchase event
+  if (typeof fbq !== 'undefined') {
+    fbq('track', 'Purchase', {
+      value: 299,
+      currency: 'INR',
+      content_name: 'Understand Al-Quran With 300 Words',
+      content_type: 'product'
+    });
+  }
+
+  // --- Also trigger download after 2 seconds (optional) ---
+  // Uncomment below to auto-download after 2 seconds
+  // setTimeout(downloadPDF, 2000);
+</script>
+
+</body>
+</html>
