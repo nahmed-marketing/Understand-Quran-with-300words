@@ -55,37 +55,11 @@
       text-align: center;
     }
 
-    .login-box .lock-icon {
-      font-size: 48px;
-      margin-bottom: 12px;
-    }
-
-    .login-box h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      color: var(--text-dark);
-      margin-bottom: 4px;
-    }
-
-    .login-box p {
-      font-size: 14px;
-      color: #6a7a72;
-      margin-bottom: 24px;
-    }
-
-    .login-box .form-group {
-      text-align: left;
-      margin-bottom: 18px;
-    }
-
-    .login-box .form-label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-dark);
-      margin-bottom: 4px;
-    }
-
+    .login-box .lock-icon { font-size: 48px; margin-bottom: 12px; }
+    .login-box h1 { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--text-dark); margin-bottom: 4px; }
+    .login-box p { font-size: 14px; color: #6a7a72; margin-bottom: 24px; }
+    .login-box .form-group { text-align: left; margin-bottom: 18px; }
+    .login-box .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--text-dark); margin-bottom: 4px; }
     .login-box .form-control {
       width: 100%;
       padding: 12px 16px;
@@ -97,13 +71,11 @@
       transition: all var(--transition);
       color: var(--text-dark);
     }
-
     .login-box .form-control:focus {
       outline: none;
       border-color: var(--elegant-gold);
       box-shadow: 0 0 0 3px rgba(200, 164, 93, 0.1);
     }
-
     .login-box .btn {
       width: 100%;
       padding: 14px;
@@ -117,13 +89,7 @@
       color: var(--text-light);
       font-family: 'Inter', sans-serif;
     }
-
-    .login-box .btn:hover {
-      background: var(--dark-emerald);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-
+    .login-box .btn:hover { background: var(--dark-emerald); transform: translateY(-2px); box-shadow: var(--shadow-md); }
     .login-box .error {
       background: rgba(192, 57, 43, 0.06);
       border: 1px solid rgba(192, 57, 43, 0.12);
@@ -134,30 +100,13 @@
       margin-bottom: 16px;
       display: none;
     }
-
     .login-box .error.show { display: block; }
+    .login-box .hint { font-size: 12px; color: #8a9a92; margin-top: 12px; }
+    .login-box .hint strong { color: var(--deep-emerald); cursor: pointer; }
 
-    .login-box .hint {
-      font-size: 12px;
-      color: #8a9a92;
-      margin-top: 12px;
-    }
-
-    .login-box .hint strong {
-      color: var(--deep-emerald);
-      cursor: pointer;
-    }
-
-    /* ===== DASHBOARD (hidden until login) ===== */
-    .dashboard-wrapper {
-      display: none;
-      width: 100%;
-      min-height: 100vh;
-    }
-
-    .dashboard-wrapper.visible {
-      display: block;
-    }
+    /* ===== DASHBOARD ===== */
+    .dashboard-wrapper { display: none; width: 100%; min-height: 100vh; }
+    .dashboard-wrapper.visible { display: block; }
 
     .dashboard {
       display: grid;
@@ -176,7 +125,6 @@
       overflow-y: auto;
       border-right: 1px solid rgba(255, 255, 255, 0.04);
     }
-
     .sidebar-brand {
       display: flex;
       align-items: center;
@@ -185,7 +133,6 @@
       padding-bottom: 20px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
-
     .sidebar-brand-icon { font-size: 28px; font-weight: 700; color: var(--elegant-gold); }
     .sidebar-brand-text { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; }
     .sidebar-brand-text span { color: var(--elegant-gold); }
@@ -230,9 +177,7 @@
       cursor: pointer;
       transition: all var(--transition);
     }
-    .sidebar-footer .logout-btn:hover {
-      background: rgba(192, 57, 43, 0.3);
-    }
+    .sidebar-footer .logout-btn:hover { background: rgba(192, 57, 43, 0.3); }
 
     /* MAIN CONTENT */
     .main-content { padding: 32px 40px 60px; background: var(--warm-ivory); }
@@ -345,27 +290,10 @@
       border: 2px solid var(--elegant-gold);
       box-shadow: 0 8px 40px rgba(11, 61, 46, 0.2);
     }
-    .publish-box h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
-    .publish-box p {
-      opacity: 0.8;
-      font-size: 16px;
-      margin-bottom: 20px;
-    }
-    .publish-box .btn {
-      font-size: 18px;
-      padding: 16px 48px;
-      background: var(--elegant-gold);
-      color: var(--text-dark);
-      box-shadow: 0 4px 20px rgba(200, 164, 93, 0.3);
-    }
-    .publish-box .btn:hover {
-      background: var(--soft-gold);
-      transform: scale(1.02);
-    }
+    .publish-box h2 { font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 8px; }
+    .publish-box p { opacity: 0.8; font-size: 16px; margin-bottom: 20px; }
+    .publish-box .btn { font-size: 18px; padding: 16px 48px; background: var(--elegant-gold); color: var(--text-dark); box-shadow: 0 4px 20px rgba(200, 164, 93, 0.3); }
+    .publish-box .btn:hover { background: var(--soft-gold); transform: scale(1.02); }
     .publish-box .steps {
       display: flex;
       justify-content: center;
@@ -375,13 +303,9 @@
       opacity: 0.7;
       flex-wrap: wrap;
     }
-    .publish-box .steps span {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+    .publish-box .steps span { display: flex; align-items: center; gap: 6px; }
 
-    /* PASSWORD CHANGE SECTION */
+    /* PASSWORD CHANGE */
     .password-section {
       background: var(--soft-cream);
       border-radius: var(--radius-lg);
@@ -390,18 +314,22 @@
       box-shadow: var(--shadow-sm);
       margin-top: 16px;
     }
-    .password-section h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 18px;
-      color: var(--text-dark);
-      margin-bottom: 12px;
-    }
-    .password-section .form-row {
-      grid-template-columns: 1fr 1fr auto;
-    }
-    .password-section .btn {
-      align-self: flex-end;
-      height: 44px;
+    .password-section h4 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text-dark); margin-bottom: 12px; }
+    .password-section .form-row { grid-template-columns: 1fr 1fr auto; }
+    .password-section .btn { align-self: flex-end; height: 44px; }
+
+    /* Cashfree Badge */
+    .cashfree-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(200, 164, 93, 0.08);
+      padding: 4px 16px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--deep-emerald);
+      border: 1px solid rgba(200, 164, 93, 0.1);
     }
 
     /* RESPONSIVE */
@@ -422,17 +350,12 @@
       .login-box { padding: 28px 20px; }
     }
 
-    /* SCROLLBAR */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: var(--warm-ivory); }
     ::-webkit-scrollbar-thumb { background: var(--light-gold); border-radius: 50px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--elegant-gold); }
 
-    @keyframes pop {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
+    @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
     .pop { animation: pop 0.3s ease; }
   </style>
 </head>
@@ -480,7 +403,7 @@
       <li><a data-tab="settings"><span class="nav-icon">⚙️</span> Settings</a></li>
     </ul>
     <div class="sidebar-footer">
-      <p>v2.1 · 🔐 Protected</p>
+      <p>v2.2 · 🔐 Protected</p>
       <p><a href="index.html">← View Landing Page</a></p>
       <button class="logout-btn" onclick="logout()">🚪 Logout</button>
     </div>
@@ -530,7 +453,7 @@
           <div><strong style="color: var(--deep-emerald); font-size: 28px; font-family: 'Playfair Display', serif;" id="statVisitors">0</strong><br /><span style="font-size: 13px; color: #6a7a72;">Visitors</span></div>
           <div><strong style="color: var(--deep-emerald); font-size: 28px; font-family: 'Playfair Display', serif;" id="statConversion">0%</strong><br /><span style="font-size: 13px; color: #6a7a72;">Conversion Rate</span></div>
           <div><strong style="color: var(--deep-emerald); font-size: 28px; font-family: 'Playfair Display', serif;" id="statSales">0</strong><br /><span style="font-size: 13px; color: #6a7a72;">Sales</span></div>
-          <div><strong style="color: var(--deep-emerald); font-size: 28px; font-family: 'Playfair Display', serif;" id="statRevenue">$0</strong><br /><span style="font-size: 13px; color: #6a7a72;">Revenue</span></div>
+          <div><strong style="color: var(--deep-emerald); font-size: 28px; font-family: 'Playfair Display', serif;" id="statRevenue">₹0</strong><br /><span style="font-size: 13px; color: #6a7a72;">Revenue</span></div>
         </div>
         <div style="margin-top: 16px; font-size: 13px; color: #6a7a72; background: var(--warm-ivory); padding: 12px 16px; border-radius: var(--radius);">
           ℹ️ These numbers are calculated from your Statistics settings below.
@@ -678,38 +601,109 @@
       </div>
     </div>
 
-    <!-- ===== TAB: CHECKOUT ===== -->
+    <!-- ===== TAB: CHECKOUT (CASHFREE UPDATED) ===== -->
     <div id="tab-checkout" class="tab-content">
       <div class="card">
         <div class="card-header">
-          <span class="card-title">Checkout Configuration</span>
-          <span class="card-subtitle">Where customers buy your ebook</span>
+          <span class="card-title">💳 Cashfree Payment Gateway</span>
+          <span class="card-subtitle"><span class="cashfree-badge">✓ Cashfree Ready</span></span>
         </div>
-        <div class="alert alert-info">
-          <span>💡</span>
-          <span>Supports Gumroad, Payhip, Stripe, Shopify, WooCommerce, and any other platform.</span>
+
+        <div class="alert alert-success">
+          <span>✅</span>
+          <span><strong>Cashfree Integration:</strong> Your payment gateway is configured. Customers will pay securely via Cashfree.</span>
         </div>
+
         <div class="form-group">
-          <label class="form-label">Checkout URL <span class="required">*</span></label>
-          <input class="form-control" id="checkoutUrl" value="YOUR_CHECKOUT_LINK_HERE" placeholder="https://your-store.com/checkout" />
-          <div class="form-hint">The URL where customers complete their purchase.</div>
+          <label class="form-label">Cashfree Checkout URL <span class="required">*</span></label>
+          <input class="form-control" id="checkoutUrl" value="https://sandbox.cashfree.com/pg/checkout" placeholder="https://sandbox.cashfree.com/pg/checkout" />
+          <div class="form-hint">
+            🔵 <strong>Sandbox (Test):</strong> https://sandbox.cashfree.com/pg/checkout<br />
+            🟢 <strong>Live (Production):</strong> https://www.cashfree.com/pg/checkout
+          </div>
         </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">App ID / Client ID <span class="required">*</span></label>
+            <input class="form-control" id="cashfreeAppId" value="YOUR_CASHFREE_APP_ID" placeholder="e.g. 1234567890" />
+            <div class="form-hint">Find this in your Cashfree Dashboard under API Keys.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Secret Key <span class="required">*</span></label>
+            <input class="form-control" id="cashfreeSecret" type="password" value="YOUR_CASHFREE_SECRET_KEY" placeholder="Your secret key" />
+            <div class="form-hint">Keep this secret! Never share it.</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Product Price (₹) <span class="required">*</span></label>
+            <input class="form-control" id="productPrice" value="299" placeholder="e.g. 299" />
+            <div class="form-hint">Price in Indian Rupees (₹)</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Product Name</label>
+            <input class="form-control" id="productName" value="Understand Al-Quran With 300 Words" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Mode</label>
+            <select class="form-control" id="cashfreeMode">
+              <option value="sandbox">🧪 Sandbox (Test Mode)</option>
+              <option value="production">🚀 Production (Live)</option>
+            </select>
+            <div class="form-hint">Use Sandbox for testing, Production for real payments.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Currency</label>
+            <select class="form-control" id="paymentCurrency">
+              <option value="INR">₹ INR (Indian Rupee)</option>
+              <option value="USD">$ USD</option>
+              <option value="GBP">£ GBP</option>
+            </select>
+          </div>
+        </div>
+
         <div class="form-group">
-          <label class="form-label">Payment Provider</label>
-          <select class="form-control" id="paymentProvider">
-            <option value="gumroad">Gumroad</option>
-            <option value="payhip">Payhip</option>
-            <option value="stripe">Stripe</option>
-            <option value="shopify">Shopify</option>
-            <option value="woocommerce">WooCommerce</option>
-            <option value="other">Other</option>
-          </select>
+          <label class="form-label">Return URL (After Payment)</label>
+          <input class="form-control" id="returnUrl" value="https://YOUR-DOMAIN.com/thank-you" placeholder="https://your-domain.com/thank-you" />
+          <div class="form-hint">Where customers go after successful payment. Create a thank-you page.</div>
         </div>
+
         <div class="form-group">
-          <label class="form-label">Product Price</label>
-          <input class="form-control" id="productPrice" value="$14.99" placeholder="e.g. $14.99" />
+          <div class="form-check">
+            <input type="checkbox" id="utmPreserve" checked />
+            <label for="utmPreserve">Preserve UTM parameters in checkout</label>
+          </div>
         </div>
-        <button class="btn btn-primary" onclick="testCheckout()">🔗 Test Checkout Link</button>
+
+        <div style="background: var(--warm-ivory); padding: 16px 20px; border-radius: var(--radius); margin-top: 12px; font-size: 13px; color: #6a7a72;">
+          <strong>💡 Cashfree Setup Instructions:</strong><br />
+          1. Sign up at <a href="https://www.cashfree.com/" target="_blank" style="color: var(--deep-emerald);">cashfree.com</a><br />
+          2. Go to Dashboard → API Keys → Copy App ID and Secret Key<br />
+          3. Paste them above<br />
+          4. In Cashfree Dashboard, set your Webhook URL and Return URL<br />
+          5. Switch from Sandbox to Production when ready to go live!
+        </div>
+
+        <button class="btn btn-primary" onclick="testCheckout()" style="margin-top: 16px;">🔗 Test Cashfree Checkout</button>
+      </div>
+
+      <!-- Cashfree Payment Button Preview -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Payment Button Preview</span>
+          <span class="card-subtitle">How it looks on your landing page</span>
+        </div>
+        <div style="text-align: center; padding: 20px 0;">
+          <div style="background: var(--deep-emerald); color: white; padding: 16px 40px; border-radius: 50px; display: inline-block; font-weight: 600; font-size: 18px; box-shadow: 0 4px 20px rgba(11, 61, 46, 0.25);">
+            💳 Pay ₹<span id="previewPrice">299</span> with Cashfree
+          </div>
+          <p style="font-size: 13px; color: #6a7a72; margin-top: 8px;">Secure checkout powered by Cashfree</p>
+        </div>
       </div>
     </div>
 
@@ -763,7 +757,7 @@
         </div>
       </div>
 
-      <!-- ===== PASSWORD CHANGE SECTION ===== -->
+      <!-- PASSWORD CHANGE -->
       <div class="password-section">
         <h4>🔐 Change Admin Password</h4>
         <div class="form-row">
@@ -807,30 +801,24 @@
    * ============================================================
    */
 
-  // --- DEFAULT PASSWORD (change this to your own) ---
   const DEFAULT_PASSWORD = "admin123";
-  
-  // --- Get stored password or use default ---
+
   function getStoredPassword() {
     const stored = localStorage.getItem('adminPassword');
     return stored || DEFAULT_PASSWORD;
   }
 
-  // --- Login ---
   function login() {
     const input = document.getElementById('passwordInput');
     const error = document.getElementById('loginError');
     const password = input.value.trim();
     const storedPassword = getStoredPassword();
-    
+
     if (password === storedPassword) {
-      // Login successful
       error.classList.remove('show');
       document.getElementById('loginScreen').style.display = 'none';
       document.getElementById('dashboardWrapper').classList.add('visible');
-      // Store session
       sessionStorage.setItem('adminLoggedIn', 'true');
-      // Load config
       loadConfig();
     } else {
       error.classList.add('show');
@@ -840,7 +828,6 @@
     }
   }
 
-  // --- Logout ---
   function logout() {
     sessionStorage.removeItem('adminLoggedIn');
     document.getElementById('dashboardWrapper').classList.remove('visible');
@@ -849,7 +836,6 @@
     document.getElementById('passwordInput').focus();
   }
 
-  // --- Check session on load ---
   function checkSession() {
     if (sessionStorage.getItem('adminLoggedIn') === 'true') {
       document.getElementById('loginScreen').style.display = 'none';
@@ -860,41 +846,33 @@
     }
   }
 
-  // --- Change Password ---
   function changePassword() {
     const newPass = document.getElementById('newPassword').value.trim();
     const confirmPass = document.getElementById('confirmPassword').value.trim();
     const message = document.getElementById('passwordMessage');
-    
+
     if (newPass.length < 6) {
       message.style.display = 'block';
       message.style.color = '#c0392b';
       message.textContent = '❌ Password must be at least 6 characters.';
       return;
     }
-    
+
     if (newPass !== confirmPass) {
       message.style.display = 'block';
       message.style.color = '#c0392b';
       message.textContent = '❌ Passwords do not match.';
       return;
     }
-    
-    // Save new password
+
     localStorage.setItem('adminPassword', newPass);
     message.style.display = 'block';
     message.style.color = '#27ae60';
     message.textContent = '✅ Password updated successfully! Remember it for next time.';
-    
-    // Clear fields
     document.getElementById('newPassword').value = '';
     document.getElementById('confirmPassword').value = '';
-    
-    // Test: if the new password works
-    sessionStorage.setItem('adminLoggedIn', 'true');
   }
 
-  // --- Login with Enter key ---
   document.addEventListener('DOMContentLoaded', function() {
     checkSession();
     document.getElementById('passwordInput').addEventListener('keydown', function(e) {
@@ -908,7 +886,6 @@
    * ============================================================
    */
 
-  // --- NAVIGATION ---
   document.querySelectorAll('.sidebar-nav a').forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
@@ -927,7 +904,7 @@
       dashboard: ['Dashboard', 'Make changes and publish them live in 2 minutes!'],
       content: ['Content Editor', 'Edit your landing page copy'],
       stats: ['Statistics', 'Configure global data and numbers'],
-      checkout: ['Checkout Configuration', 'Connect your payment provider'],
+      checkout: ['💳 Cashfree Payment Gateway', 'Configure your Cashfree payment settings'],
       pixel: ['Meta Pixel', 'Track conversions from Meta ads'],
       settings: ['Settings', 'Site-wide configuration & password']
     };
@@ -936,7 +913,6 @@
     document.getElementById('pageSubtitle').textContent = sub;
   }
 
-  // --- TOGGLE ---
   let pixelActive = true;
   function togglePixel() {
     pixelActive = !pixelActive;
@@ -946,16 +922,23 @@
     dot.style.left = pixelActive ? '22px' : '2px';
   }
 
+  // --- Price Preview ---
+  document.getElementById('productPrice').addEventListener('input', function() {
+    document.getElementById('previewPrice').textContent = this.value || '299';
+  });
+
   // --- STATS PREVIEW ---
   function updateStatsPreview() {
     const total = parseInt(document.getElementById('statTotalMuslims').value) || 0;
     const understand = parseInt(document.getElementById('statUnderstand').value) || 0;
+    const price = parseInt(document.getElementById('productPrice').value) || 299;
     document.getElementById('statVisitors').textContent = total > 0 ? (total / 1000000).toFixed(1) + 'M' : '0';
     document.getElementById('statConversion').textContent = total > 0 ? ((understand / total) * 100).toFixed(1) + '%' : '0%';
     document.getElementById('statSales').textContent = total > 0 ? Math.round(total * 0.0001) : '0';
-    document.getElementById('statRevenue').textContent = total > 0 ? '$' + (Math.round(total * 0.0001) * 14.99).toFixed(0) : '$0';
+    document.getElementById('statRevenue').textContent = total > 0 ? '₹' + (Math.round(total * 0.0001) * price).toFixed(0) : '₹0';
   }
-  document.querySelectorAll('#statTotalMuslims, #statUnderstand, #statTranslate').forEach(el => {
+
+  document.querySelectorAll('#statTotalMuslims, #statUnderstand, #statTranslate, #productPrice').forEach(el => {
     el.addEventListener('input', updateStatsPreview);
   });
   updateStatsPreview();
@@ -990,8 +973,14 @@
       },
       checkout: {
         url: document.getElementById('checkoutUrl').value,
-        provider: document.getElementById('paymentProvider').value,
-        price: document.getElementById('productPrice').value
+        appId: document.getElementById('cashfreeAppId').value,
+        secret: document.getElementById('cashfreeSecret').value,
+        price: document.getElementById('productPrice').value,
+        productName: document.getElementById('productName').value,
+        mode: document.getElementById('cashfreeMode').value,
+        currency: document.getElementById('paymentCurrency').value,
+        returnUrl: document.getElementById('returnUrl').value,
+        provider: 'cashfree'
       },
       pixel: {
         id: document.getElementById('pixelId').value,
@@ -1046,9 +1035,14 @@
       document.getElementById('bigWords').value = data.bigIdea?.words || '300';
       document.getElementById('bigCoverage').value = data.bigIdea?.coverage || '70%';
       document.getElementById('bigThemes').value = data.bigIdea?.themes || '5';
-      document.getElementById('checkoutUrl').value = data.checkout?.url || 'YOUR_CHECKOUT_LINK_HERE';
-      document.getElementById('paymentProvider').value = data.checkout?.provider || 'gumroad';
-      document.getElementById('productPrice').value = data.checkout?.price || '$14.99';
+      document.getElementById('checkoutUrl').value = data.checkout?.url || 'https://sandbox.cashfree.com/pg/checkout';
+      document.getElementById('cashfreeAppId').value = data.checkout?.appId || 'YOUR_CASHFREE_APP_ID';
+      document.getElementById('cashfreeSecret').value = data.checkout?.secret || 'YOUR_CASHFREE_SECRET_KEY';
+      document.getElementById('productPrice').value = data.checkout?.price || '299';
+      document.getElementById('productName').value = data.checkout?.productName || 'Understand Al-Quran With 300 Words';
+      document.getElementById('cashfreeMode').value = data.checkout?.mode || 'sandbox';
+      document.getElementById('paymentCurrency').value = data.checkout?.currency || 'INR';
+      document.getElementById('returnUrl').value = data.checkout?.returnUrl || 'https://YOUR-DOMAIN.com/thank-you';
       document.getElementById('pixelId').value = data.pixel?.id || 'YOUR_META_PIXEL_ID';
       if (data.pixel?.active !== undefined) {
         pixelActive = data.pixel.active;
@@ -1068,7 +1062,7 @@
   function downloadScriptJS() {
     saveAll();
     const config = getConfig();
-    
+
     const scriptContent = `/**
  * ============================================================
  * GENERATED SCRIPT.JS — DO NOT EDIT DIRECTLY
@@ -1076,8 +1070,17 @@
  * ============================================================
  */
 
-// --- CHECKOUT ---
+// --- CASHFREE PAYMENT GATEWAY ---
 const CHECKOUT_URL = "${config.checkout.url}";
+const CASHFREE_APP_ID = "${config.checkout.appId}";
+const CASHFREE_SECRET = "${config.checkout.secret}";
+const CASHFREE_MODE = "${config.checkout.mode}";
+const CASHFREE_CURRENCY = "${config.checkout.currency}";
+const CASHFREE_RETURN_URL = "${config.checkout.returnUrl}";
+
+// --- PRODUCT ---
+const PRODUCT_PRICE = ${config.checkout.price};
+const PRODUCT_NAME = "${config.checkout.productName.replace(/"/g, '\\"')}";
 
 // --- GLOBAL STATISTICS ---
 const GLOBAL_STATS = {
@@ -1125,7 +1128,7 @@ const CONTENT = {
         coverage: "${config.bigIdea.coverage}",
         themes: "${config.bigIdea.themes}"
     },
-    price: "${config.checkout.price}"
+    price: "₹${config.checkout.price}"
 };
 
 // --- SITE SETTINGS ---
@@ -1135,13 +1138,56 @@ const SITE_SETTINGS = {
     canonical: "${config.settings.canonical}"
 };
 
-console.log('✅ 300 Words — Loaded with dashboard settings!');
+console.log('✅ 300 Words — Loaded with Cashfree settings!');
 
 /**
  * ============================================================
- * UTILITY FUNCTIONS
+ * CASHFREE PAYMENT FUNCTIONS
  * ============================================================
  */
+
+function initiateCashfreePayment() {
+    // Build the payment data
+    const paymentData = {
+        appId: CASHFREE_APP_ID,
+        orderId: 'ORDER_' + Date.now(),
+        orderAmount: PRODUCT_PRICE,
+        orderCurrency: CASHFREE_CURRENCY || 'INR',
+        orderNote: PRODUCT_NAME,
+        customerName: 'Customer',
+        customerEmail: 'customer@example.com',
+        customerPhone: '9999999999',
+        returnUrl: CASHFREE_RETURN_URL || window.location.href,
+        notifyUrl: CASHFREE_RETURN_URL || window.location.href
+    };
+
+    // For sandbox, use the sandbox URL
+    const baseUrl = CASHFREE_MODE === 'production' 
+        ? 'https://www.cashfree.com/pg/checkout'
+        : 'https://sandbox.cashfree.com/pg/checkout';
+
+    // Redirect to Cashfree checkout with parameters
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = baseUrl;
+
+    Object.keys(paymentData).forEach(key => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = paymentData[key];
+        form.appendChild(input);
+    });
+
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+}
+
+// --- GET CHECKOUT URL (for backward compatibility) ---
+function getCheckoutURL() {
+    return CHECKOUT_URL;
+}
 
 function captureUTMParameters() {
     const params = new URLSearchParams(window.location.search);
@@ -1162,20 +1208,6 @@ function getUTMParameters() {
     return utmData;
 }
 
-function getCheckoutURL() {
-    let url = CHECKOUT_URL;
-    const utm = getUTMParameters();
-    const params = new URLSearchParams();
-    Object.keys(utm).forEach(key => {
-        if (utm[key]) params.set(key, utm[key]);
-    });
-    const queryString = params.toString();
-    if (queryString) {
-        url += (url.includes('?') ? '&' : '?') + queryString;
-    }
-    return url;
-}
-
 function trackEvent(eventName, params = {}) {
     console.log(\`[TRACK] \${eventName}\`, params);
     if (typeof fbq !== 'undefined' && META_PIXEL_ID !== "YOUR_META_PIXEL_ID" && PIXEL_ACTIVE) {
@@ -1184,23 +1216,19 @@ function trackEvent(eventName, params = {}) {
 }
 
 function trackPageView() { if (TRACK_EVENTS.pageView) trackEvent('PageView'); }
-function trackViewContent() { if (TRACK_EVENTS.viewContent) trackEvent('ViewContent', { content_name: 'Understand Al-Quran With 300 Words', content_type: 'product' }); }
-function trackInitiateCheckout() { if (TRACK_EVENTS.initiateCheckout) trackEvent('InitiateCheckout', { content_name: 'Understand Al-Quran With 300 Words', content_type: 'product' }); }
+function trackViewContent() { if (TRACK_EVENTS.viewContent) trackEvent('ViewContent', { content_name: 'Understand Al-Quran With 300 Words', content_type: 'product', price: PRODUCT_PRICE }); }
+function trackInitiateCheckout() { if (TRACK_EVENTS.initiateCheckout) trackEvent('InitiateCheckout', { content_name: 'Understand Al-Quran With 300 Words', content_type: 'product', price: PRODUCT_PRICE }); }
 
-// --- SETUP CTAs ---
+// --- SETUP CTAs with Cashfree ---
 function setupCTAs() {
     document.querySelectorAll('a[href="#"], .btn, .btn-primary, .btn-gold, .btn-hero, .btn-final, .btn-sticky, .header-cta').forEach(btn => {
         btn.addEventListener('click', function(e) {
             const isCTA = this.classList.contains('btn') || this.classList.contains('header-cta') || this.classList.contains('btn-sticky');
-            if (isCTA && CHECKOUT_URL !== "YOUR_CHECKOUT_LINK_HERE") {
+            if (isCTA && CASHFREE_APP_ID !== "YOUR_CASHFREE_APP_ID") {
                 e.preventDefault();
                 trackInitiateCheckout();
-                const url = getCheckoutURL();
-                if (url && url !== "YOUR_CHECKOUT_LINK_HERE") {
-                    window.location.href = url;
-                } else {
-                    document.getElementById('finalcta')?.scrollIntoView({ behavior: 'smooth' });
-                }
+                // Use Cashfree payment flow
+                initiateCashfreePayment();
             } else if (this.getAttribute('href') === '#') {
                 e.preventDefault();
                 document.getElementById('finalcta')?.scrollIntoView({ behavior: 'smooth' });
@@ -1366,7 +1394,7 @@ function init() {
     setupFAQ();
     setupScrollReveal();
     window.addEventListener('scroll', trackScroll, { passive: true });
-    
+
     const stats = GLOBAL_STATS;
     const total = stats.totalMuslims || 1900000000;
     const understand = stats.muslimsWhoUnderstandQuranArabic || 300000000;
@@ -1377,14 +1405,14 @@ function init() {
     if (sourceEl) sourceEl.textContent = stats.sourceName || "SOURCE TO BE ADDED";
     updatePieChart(understand, translate);
     updateBarChart(total, understand, translate);
-    
-    console.log('🔹 300 Words — Landing Page Loaded with Dashboard Settings');
+
+    console.log('🔹 300 Words — Landing Page Loaded with Cashfree Integration');
 }
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
 else init();
 `;
-    
+
     const blob = new Blob([scriptContent], { type: 'application/javascript' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -1394,7 +1422,7 @@ else init();
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    
+
     const btn = document.querySelector('.publish-box .btn');
     const original = btn.textContent;
     btn.textContent = '✅ Downloaded! Replace script.js on your website!';
@@ -1413,8 +1441,13 @@ else init();
   // --- TEST CHECKOUT ---
   function testCheckout() {
     const url = document.getElementById('checkoutUrl').value;
-    if (!url || url === 'YOUR_CHECKOUT_LINK_HERE') {
-      alert('⚠️ Please enter a valid checkout URL first.');
+    const appId = document.getElementById('cashfreeAppId').value;
+    if (!url || url === 'https://sandbox.cashfree.com/pg/checkout' || url === 'https://www.cashfree.com/pg/checkout') {
+      alert('⚠️ Please enter your Cashfree App ID and Secret Key first.');
+      return;
+    }
+    if (appId === 'YOUR_CASHFREE_APP_ID') {
+      alert('⚠️ Please enter your Cashfree App ID from your Cashfree Dashboard.');
       return;
     }
     window.open(url, '_blank');
@@ -1475,7 +1508,7 @@ else init();
     });
   });
 
-  console.log('🔐 300 Words Admin Dashboard loaded with password protection.');
+  console.log('🔐 300 Words Admin Dashboard loaded with Cashfree support.');
 </script>
 
 </body>
