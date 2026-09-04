@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — 300 Words Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --deep-emerald: #0B3D2E;
+      --dark-emerald: #062B20;
+      --emerald-light: #145A42;
+      --warm-ivory: #F8F4EA;
+      --soft-cream: #FFFDF7;
+      --elegant-gold: #C8A45D;
+      --soft-gold: #D8BC7A;
+      --light-gold: #E9E2D0;
+      --text-dark: #172019;
+      --text-light: #F8F4EA;
+      --shadow-sm: 0 2px 8px rgba(11, 61, 46, 0.06);
+      --shadow-md: 0 8px 32px rgba(11, 61, 46, 0.10);
+      --radius: 12px;
+      --radius-lg: 20px;
+      --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--warm-ivory);
+      color: var(--text-dark);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ===== LOGIN SCREEN ===== */
+    .login-container {
+      width: 100%;
+      max-width: 420px;
+      padding: 20px;
+    }
+
+    .login-box {
+      background: var(--soft-cream);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(200, 164, 93, 0.06);
+      text-align: center;
+    }
+
+    .login-box .lock-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .login-box h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .login-box p {
+      font-size: 14px;
+      color: #6a7a72;
+      margin-bottom: 24px;
+    }
+
+    .login-box .form-group {
+      text-align: left;
+      margin-bottom: 18px;
+    }
+
+    .login-box .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .login-box .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid rgba(11, 61, 46, 0.1);
+      border-radius: var(--radius);
+      font-size: 16px;
+      font-family: 'Inter', sans-serif;
+      background: var(--warm-ivory);
+      transition: all var(--transition);
+      color: var(--text-dark);
+    }
+
+    .login-box .form-control:focus {
+      outline: none;
+      border-color: var(--elegant-gold);
+      box-shadow: 0 0 0 3px rgba(200, 164, 93, 0.1);
+    }
+
+    .login-box .btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 50px;
+      border: none;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all var(--transition);
+      background: var(--deep-emerald);
+      color: var(--text-light);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .login-box .btn:hover {
+      background: var(--dark-emerald);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .login-box .error {
+      background: rgba(192, 57, 43, 0.06);
+      border: 1px solid rgba(192, 57, 43, 0.12);
+      color: #c0392b;
+      padding: 10px 16px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      margin-bottom: 16px;
+      display: none;
+    }
+
+    .login-box .error.show { display: block; }
+
+    .login-box .hint {
+      font-size: 12px;
+      color: #8a9a92;
+      margin-top: 12px;
+    }
+
+    .login-box .hint strong {
+      color: var(--deep-emerald);
+      cursor: pointer;
+    }
+
+    /* ===== DASHBOARD (hidden until login) ===== */
+    .dashboard-wrapper {
+      display: none;
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    .dashboard-wrapper.visible {
+      display: block;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: 100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      background: var(--deep-emerald);
+      color: var(--text-light);
+      padding: 28px 20px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      border-right: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 36px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .sidebar-brand-icon { font-size: 28px; font-weight: 700; color: var(--elegant-gold); }
+    .sidebar-brand-text { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; }
+    .sidebar-brand-text span { color: var(--elegant-gold); }
+
+    .sidebar-nav { list-style: none; }
+    .sidebar-nav li { margin-bottom: 4px; }
+    .sidebar-nav a {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+    .sidebar-nav a:hover { background: rgba(255, 255, 255, 0.06); color: var(--text-light); }
+    .sidebar-nav a.active { background: rgba(200, 164, 93, 0.15); color: var(--elegant-gold); border: 1px solid rgba(200, 164, 93, 0.1); }
+    .sidebar-nav .nav-icon { font-size: 18px; width: 24px; text-align: center; }
+
+    .sidebar-footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+    .sidebar-footer a { color: rgba(255, 255, 255, 0.3); text-decoration: none; }
+    .sidebar-footer .logout-btn {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 6px 16px;
+      border-radius: 50px;
+      background: rgba(192, 57, 43, 0.2);
+      color: #e74c3c;
+      font-size: 12px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .sidebar-footer .logout-btn:hover {
+      background: rgba(192, 57, 43, 0.3);
+    }
+
+    /* MAIN CONTENT */
+    .main-content { padding: 32px 40px 60px; background: var(--warm-ivory); }
+
+    /* TOP BAR */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .topbar-title h1 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--text-dark); }
+    .topbar-title p { font-size: 14px; color: #6a7a72; }
+    .topbar-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+
+    .btn {
+      padding: 10px 24px;
+      border-radius: 50px;
+      border: none;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-outline { background: transparent; border: 1px solid rgba(11, 61, 46, 0.15); color: var(--text-dark); }
+    .btn-outline:hover { background: rgba(11, 61, 46, 0.04); border-color: var(--deep-emerald); }
+    .btn-primary { background: var(--deep-emerald); color: var(--text-light); }
+    .btn-primary:hover { background: var(--dark-emerald); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .btn-success { background: var(--elegant-gold); color: var(--text-dark); }
+    .btn-success:hover { background: var(--soft-gold); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .btn-danger { background: #c0392b; color: white; }
+    .btn-danger:hover { background: #a93226; }
+    .btn-lg { padding: 14px 36px; font-size: 16px; }
+    .btn-sm { padding: 6px 16px; font-size: 12px; }
+
+    /* CARDS */
+    .card {
+      background: var(--soft-cream);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(200, 164, 93, 0.06);
+      box-shadow: var(--shadow-sm);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .card-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--text-dark); }
+    .card-subtitle { font-size: 13px; color: #6a7a72; }
+
+    /* FORMS */
+    .form-group { margin-bottom: 18px; }
+    .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--text-dark); margin-bottom: 4px; }
+    .form-label .required { color: #c0392b; }
+    .form-control {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid rgba(11, 61, 46, 0.1);
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      background: var(--warm-ivory);
+      transition: all var(--transition);
+      color: var(--text-dark);
+    }
+    .form-control:focus { outline: none; border-color: var(--elegant-gold); box-shadow: 0 0 0 3px rgba(200, 164, 93, 0.1); }
+    textarea.form-control { min-height: 80px; resize: vertical; }
+    .form-hint { font-size: 12px; color: #8a9a92; margin-top: 4px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .form-check { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .form-check input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--deep-emerald); cursor: pointer; }
+    .form-check label { font-size: 14px; color: var(--text-dark); cursor: pointer; }
+
+    /* TABS */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ALERT */
+    .alert {
+      padding: 14px 20px;
+      border-radius: var(--radius);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+    }
+    .alert-success { background: rgba(39, 174, 96, 0.06); border: 1px solid rgba(39, 174, 96, 0.12); color: #1a7a4a; }
+    .alert-warning { background: rgba(241, 196, 15, 0.06); border: 1px solid rgba(241, 196, 15, 0.12); color: #9a7a0a; }
+    .alert-info { background: rgba(52, 152, 219, 0.06); border: 1px solid rgba(52, 152, 219, 0.12); color: #1a6a9a; }
+
+    /* PUBLISH BOX */
+    .publish-box {
+      background: linear-gradient(135deg, var(--deep-emerald), var(--dark-emerald));
+      border-radius: var(--radius-lg);
+      padding: 32px 40px;
+      color: var(--text-light);
+      text-align: center;
+      margin-bottom: 24px;
+      border: 2px solid var(--elegant-gold);
+      box-shadow: 0 8px 40px rgba(11, 61, 46, 0.2);
+    }
+    .publish-box h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    .publish-box p {
+      opacity: 0.8;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .publish-box .btn {
+      font-size: 18px;
+      padding: 16px 48px;
+      background: var(--elegant-gold);
+      color: var(--text-dark);
+      box-shadow: 0 4px 20px rgba(200, 164, 93, 0.3);
+    }
+    .publish-box .btn:hover {
+      background: var(--soft-gold);
+      transform: scale(1.02);
+    }
+    .publish-box .steps {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 16px;
+      font-size: 13px;
+      opacity: 0.7;
+      flex-wrap: wrap;
+    }
+    .publish-box .steps span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* PASSWORD CHANGE SECTION */
+    .password-section {
+      background: var(--soft-cream);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      border: 1px solid rgba(200, 164, 93, 0.06);
+      box-shadow: var(--shadow-sm);
+      margin-top: 16px;
+    }
+    .password-section h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+    .password-section .form-row {
+      grid-template-columns: 1fr 1fr auto;
+    }
+    .password-section .btn {
+      align-self: flex-end;
+      height: 44px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 992px) {
+      .dashboard { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .main-content { padding: 20px; }
+      .form-row { grid-template-columns: 1fr; }
+      .publish-box { padding: 24px 20px; }
+      .publish-box h2 { font-size: 22px; }
+      .publish-box .btn { font-size: 16px; padding: 14px 32px; }
+      .password-section .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .card { padding: 20px; }
+      .topbar-title h1 { font-size: 22px; }
+      .topbar-actions .btn { padding: 8px 16px; font-size: 12px; }
+      .login-box { padding: 28px 20px; }
+    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--warm-ivory); }
+    ::-webkit-scrollbar-thumb { background: var(--light-gold); border-radius: 50px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--elegant-gold); }
+
+    @keyframes pop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .pop { animation: pop 0.3s ease; }
+  </style>
+</head>
+<body>
+
+<!-- ===== LOGIN SCREEN ===== -->
+<div class="login-container" id="loginScreen">
+  <div class="login-box">
+    <div class="lock-icon">🔐</div>
+    <h1>Admin Dashboard</h1>
+    <p>Enter your password to access the control panel</p>
+    
+    <div class="error" id="loginError">❌ Incorrect password. Please try again.</div>
+    
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <input class="form-control" id="passwordInput" type="password" placeholder="Enter your password" onkeydown="if(event.key==='Enter') login()" />
+    </div>
+    
+    <button class="btn" onclick="login()">🔓 Unlock Dashboard</button>
+    
+    <div class="hint">
+      💡 Default password: <strong onclick="document.getElementById('passwordInput').value='admin123'">admin123</strong>
+      <br />Change it in the Settings tab after logging in.
+    </div>
+  </div>
+</div>
+
+<!-- ===== DASHBOARD WRAPPER ===== -->
+<div class="dashboard-wrapper" id="dashboardWrapper">
+
+<div class="dashboard">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <span class="sidebar-brand-icon">﷽</span>
+      <span class="sidebar-brand-text">300 <span>Words</span></span>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a class="active" data-tab="dashboard"><span class="nav-icon">📊</span> Dashboard</a></li>
+      <li><a data-tab="content"><span class="nav-icon">📝</span> Content</a></li>
+      <li><a data-tab="stats"><span class="nav-icon">📈</span> Statistics</a></li>
+      <li><a data-tab="checkout"><span class="nav-icon">💳</span> Checkout</a></li>
+      <li><a data-tab="pixel"><span class="nav-icon">🔵</span> Meta Pixel</a></li>
+      <li><a data-tab="settings"><span class="nav-icon">⚙️</span> Settings</a></li>
+    </ul>
+    <div class="sidebar-footer">
+      <p>v2.1 · 🔐 Protected</p>
+      <p><a href="index.html">← View Landing Page</a></p>
+      <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="topbar-title">
+        <h1 id="pageTitle">Dashboard</h1>
+        <p id="pageSubtitle">Make changes and publish them live in 2 minutes!</p>
+      </div>
+      <div class="topbar-actions">
+        <button class="btn btn-outline" onclick="previewPage()">👁 Preview</button>
+        <button class="btn btn-primary" onclick="saveAll()">💾 Save Changes</button>
+      </div>
+    </div>
+
+    <!-- PUBLISH BOX -->
+    <div class="publish-box">
+      <h2>🚀 Publish Your Changes Live!</h2>
+      <p>After making changes below, click this button to download the updated file.</p>
+      <button class="btn btn-lg" onclick="downloadScriptJS()">
+        📥 Download Updated script.js
+      </button>
+      <div class="steps">
+        <span>1️⃣ Make changes above</span>
+        <span>➡️</span>
+        <span>2️⃣ Click Download</span>
+        <span>➡️</span>
+        <span>3️⃣ Replace old script.js on your website</span>
+        <span>➡️</span>
+        <span>4️⃣ Refresh — DONE! 🎉</span>
+      </div>
+    </div>
+
+    <!-- ===== TAB: DASHBOARD ===== -->
+    <div id="tab-dashboard" class="tab-content active">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Quick Stats</span>
+          <span class="card-subtitle">Live preview of your numbers</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px;">
+          <div><strong style="color: var(--deep-emerald); font-size: 28px; font-family: 'Playfair Display', serif;" id="statVisitors">0</strong><br /><span style="font-size: 13px; color: #6a7a72;">Visitors</span></div>
+          <div><strong style="color: var(--deep-emerald); font-size: 28px; font-family: 'Playfair Display', serif;" id="statConversion">0%</strong><br /><span style="font-size: 13px; color: #6a7a72;">Conversion Rate</span></div>
+          <div><strong style="color: var(--deep-emerald); font-size: 28px; font-family: 'Playfair Display', serif;" id="statSales">0</strong><br /><span style="font-size: 13px; color: #6a7a72;">Sales</span></div>
+          <div><strong style="color: var(--deep-emerald); font-size: 28px; font-family: 'Playfair Display', serif;" id="statRevenue">$0</strong><br /><span style="font-size: 13px; color: #6a7a72;">Revenue</span></div>
+        </div>
+        <div style="margin-top: 16px; font-size: 13px; color: #6a7a72; background: var(--warm-ivory); padding: 12px 16px; border-radius: var(--radius);">
+          ℹ️ These numbers are calculated from your Statistics settings below.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">How This Works</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; font-size: 14px;">
+          <div style="background: var(--warm-ivory); padding: 16px; border-radius: var(--radius); text-align: center;">
+            <div style="font-size: 32px; margin-bottom: 4px;">✏️</div>
+            <strong>Step 1: Edit</strong>
+            <p style="font-size: 13px; color: #6a7a72; margin-top: 4px;">Change any text or numbers in the tabs below.</p>
+          </div>
+          <div style="background: var(--warm-ivory); padding: 16px; border-radius: var(--radius); text-align: center;">
+            <div style="font-size: 32px; margin-bottom: 4px;">💾</div>
+            <strong>Step 2: Save</strong>
+            <p style="font-size: 13px; color: #6a7a72; margin-top: 4px;">Click "Save Changes" to store your work.</p>
+          </div>
+          <div style="background: var(--warm-ivory); padding: 16px; border-radius: var(--radius); text-align: center;">
+            <div style="font-size: 32px; margin-bottom: 4px;">📥</div>
+            <strong>Step 3: Download</strong>
+            <p style="font-size: 13px; color: #6a7a72; margin-top: 4px;">Click the big gold button above to download script.js</p>
+          </div>
+          <div style="background: var(--warm-ivory); padding: 16px; border-radius: var(--radius); text-align: center;">
+            <div style="font-size: 32px; margin-bottom: 4px;">🚀</div>
+            <strong>Step 4: Publish</strong>
+            <p style="font-size: 13px; color: #6a7a72; margin-top: 4px;">Replace the old script.js on your website.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TAB: CONTENT ===== -->
+    <div id="tab-content" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Hero Section</span>
+          <span class="card-subtitle">The first thing visitors see</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Headline <span class="required">*</span></label>
+          <input class="form-control" id="heroHeadline" value="Understand More of the Qur'an — One Word at a Time." />
+          <div class="form-hint">The main headline — make it powerful!</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Subheadline</label>
+          <textarea class="form-control" id="heroSubheadline" rows="2">Many Qur'anic words may already sound familiar to you—especially if you speak Urdu. This ebook helps you recognize those words, understand their meanings, and begin seeing Qur'anic vocabulary with greater clarity.</textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">CTA Button Text <span class="required">*</span></label>
+          <input class="form-control" id="heroCta" value="Get Your Copy Now" />
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Reflection Section</span>
+          <span class="card-subtitle">Emotional copy that connects</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Headline</label>
+          <input class="form-control" id="reflectionHeadline" value="We Recite These Words Every Day. But Do We Know What They Mean?" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Question</label>
+          <input class="form-control" id="reflectionQuestion" value="But how much do we understand?" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Hope Message</label>
+          <textarea class="form-control" id="reflectionHope" rows="2">This is not something to feel hopeless about. Every journey begins somewhere. And perhaps yours can begin with just one word.</textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Final CTA</span>
+          <span class="card-subtitle">The closing conversion section</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Headline</label>
+          <input class="form-control" id="finalHeadline" value="The Qur'an Is Closer Than You Think." />
+        </div>
+        <div class="form-group">
+          <label class="form-label">CTA Text</label>
+          <input class="form-control" id="finalCta" value="Get Your Copy &amp; Start Learning" />
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TAB: STATISTICS ===== -->
+    <div id="tab-stats" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Global Statistics</span>
+          <span class="card-subtitle">The numbers shown on your landing page</span>
+        </div>
+        <div class="alert alert-warning">
+          <span>⚠️</span>
+          <span><strong>Important:</strong> Only use verified statistics. The charts will show "ILLUSTRATIVE DATA" if no source is provided.</span>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Total Muslims Worldwide</label>
+            <input class="form-control" id="statTotalMuslims" type="number" value="1900000000" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Muslims Who Understand Qur'anic Arabic</label>
+            <input class="form-control" id="statUnderstand" type="number" value="300000000" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Muslims Who Rely on Translation</label>
+            <input class="form-control" id="statTranslate" type="number" value="1600000000" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Data Source</label>
+            <input class="form-control" id="statSource" value="SOURCE TO BE ADDED" />
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Big Idea Numbers</span>
+          <span class="card-subtitle">The 300 / 70% / 5 themes</span>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Number of Words</label>
+            <input class="form-control" id="bigWords" type="number" value="300" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Vocabulary Coverage %</label>
+            <input class="form-control" id="bigCoverage" value="70%" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Themes Count</label>
+          <input class="form-control" id="bigThemes" type="number" value="5" />
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TAB: CHECKOUT ===== -->
+    <div id="tab-checkout" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Checkout Configuration</span>
+          <span class="card-subtitle">Where customers buy your ebook</span>
+        </div>
+        <div class="alert alert-info">
+          <span>💡</span>
+          <span>Supports Gumroad, Payhip, Stripe, Shopify, WooCommerce, and any other platform.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Checkout URL <span class="required">*</span></label>
+          <input class="form-control" id="checkoutUrl" value="YOUR_CHECKOUT_LINK_HERE" placeholder="https://your-store.com/checkout" />
+          <div class="form-hint">The URL where customers complete their purchase.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Payment Provider</label>
+          <select class="form-control" id="paymentProvider">
+            <option value="gumroad">Gumroad</option>
+            <option value="payhip">Payhip</option>
+            <option value="stripe">Stripe</option>
+            <option value="shopify">Shopify</option>
+            <option value="woocommerce">WooCommerce</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Product Price</label>
+          <input class="form-control" id="productPrice" value="$14.99" placeholder="e.g. $14.99" />
+        </div>
+        <button class="btn btn-primary" onclick="testCheckout()">🔗 Test Checkout Link</button>
+      </div>
+    </div>
+
+    <!-- ===== TAB: META PIXEL ===== -->
+    <div id="tab-pixel" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Meta Pixel Configuration</span>
+          <span class="card-subtitle">Track Facebook &amp; Instagram ad conversions</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Meta Pixel ID</label>
+          <input class="form-control" id="pixelId" value="YOUR_META_PIXEL_ID" placeholder="e.g. 123456789012345" />
+          <div class="form-hint">Find this in your Meta Business Suite under Events Manager.</div>
+        </div>
+        <div class="form-group">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="width: 44px; height: 24px; background: var(--deep-emerald); border-radius: 50px; cursor: pointer; position: relative;" id="pixelToggle" onclick="togglePixel()">
+              <div style="width: 20px; height: 20px; background: white; border-radius: 50%; position: absolute; top: 2px; left: 22px; transition: all 0.3s ease; box-shadow: 0 1px 4px rgba(0,0,0,0.1);"></div>
+            </div>
+            <span class="toggle-label" style="font-size: 13px; color: var(--text-dark);">Pixel Active</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Events to Track</label>
+          <div class="form-check"><input type="checkbox" id="evPageView" checked /> <label for="evPageView">Page View</label></div>
+          <div class="form-check"><input type="checkbox" id="evViewContent" checked /> <label for="evViewContent">View Content</label></div>
+          <div class="form-check"><input type="checkbox" id="evInitiateCheckout" checked /> <label for="evInitiateCheckout">Initiate Checkout</label></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TAB: SETTINGS ===== -->
+    <div id="tab-settings" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">General Settings</span>
+          <span class="card-subtitle">Site-wide configuration</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Site Title</label>
+          <input class="form-control" id="siteTitle" value="Understand Al-Quran With 300 Words | Learn Qur'anic Vocabulary" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Meta Description</label>
+          <textarea class="form-control" id="siteMeta" rows="2">Learn 300 carefully selected Qur'anic words through meaningful themes, Arabic vocabulary, Roman Urdu meanings, English meanings, and example ayahs.</textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Canonical URL</label>
+          <input class="form-control" id="siteCanonical" value="https://YOUR-DOMAIN.com/" />
+        </div>
+      </div>
+
+      <!-- ===== PASSWORD CHANGE SECTION ===== -->
+      <div class="password-section">
+        <h4>🔐 Change Admin Password</h4>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">New Password <span class="required">*</span></label>
+            <input class="form-control" id="newPassword" type="password" placeholder="Enter new password" />
+            <div class="form-hint">Minimum 6 characters. Keep it secure!</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Confirm Password <span class="required">*</span></label>
+            <input class="form-control" id="confirmPassword" type="password" placeholder="Confirm new password" />
+          </div>
+          <button class="btn btn-primary" onclick="changePassword()" style="align-self: flex-end; height: 44px;">✅ Update Password</button>
+        </div>
+        <div id="passwordMessage" style="margin-top: 12px; font-size: 14px; display: none;"></div>
+      </div>
+
+      <div class="card" style="margin-top: 16px;">
+        <div class="card-header">
+          <span class="card-title">Advanced</span>
+          <span class="card-subtitle">Export, import, or reset</span>
+        </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <button class="btn btn-outline" onclick="exportConfig()">📤 Export Config</button>
+          <button class="btn btn-outline" onclick="importConfig()">📥 Import Config</button>
+          <button class="btn btn-danger" onclick="resetConfig()">🔄 Reset to Default</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+</div>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+  /**
+   * ============================================================
+   * PASSWORD PROTECTION
+   * ============================================================
+   */
+
+  // --- DEFAULT PASSWORD (change this to your own) ---
+  const DEFAULT_PASSWORD = "admin123";
+  
+  // --- Get stored password or use default ---
+  function getStoredPassword() {
+    const stored = localStorage.getItem('adminPassword');
+    return stored || DEFAULT_PASSWORD;
+  }
+
+  // --- Login ---
+  function login() {
+    const input = document.getElementById('passwordInput');
+    const error = document.getElementById('loginError');
+    const password = input.value.trim();
+    const storedPassword = getStoredPassword();
+    
+    if (password === storedPassword) {
+      // Login successful
+      error.classList.remove('show');
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('dashboardWrapper').classList.add('visible');
+      // Store session
+      sessionStorage.setItem('adminLoggedIn', 'true');
+      // Load config
+      loadConfig();
+    } else {
+      error.classList.add('show');
+      input.value = '';
+      input.focus();
+      setTimeout(() => error.classList.remove('show'), 3000);
+    }
+  }
+
+  // --- Logout ---
+  function logout() {
+    sessionStorage.removeItem('adminLoggedIn');
+    document.getElementById('dashboardWrapper').classList.remove('visible');
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('passwordInput').value = '';
+    document.getElementById('passwordInput').focus();
+  }
+
+  // --- Check session on load ---
+  function checkSession() {
+    if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('dashboardWrapper').classList.add('visible');
+      loadConfig();
+    } else {
+      document.getElementById('loginScreen').style.display = 'flex';
+    }
+  }
+
+  // --- Change Password ---
+  function changePassword() {
+    const newPass = document.getElementById('newPassword').value.trim();
+    const confirmPass = document.getElementById('confirmPassword').value.trim();
+    const message = document.getElementById('passwordMessage');
+    
+    if (newPass.length < 6) {
+      message.style.display = 'block';
+      message.style.color = '#c0392b';
+      message.textContent = '❌ Password must be at least 6 characters.';
+      return;
+    }
+    
+    if (newPass !== confirmPass) {
+      message.style.display = 'block';
+      message.style.color = '#c0392b';
+      message.textContent = '❌ Passwords do not match.';
+      return;
+    }
+    
+    // Save new password
+    localStorage.setItem('adminPassword', newPass);
+    message.style.display = 'block';
+    message.style.color = '#27ae60';
+    message.textContent = '✅ Password updated successfully! Remember it for next time.';
+    
+    // Clear fields
+    document.getElementById('newPassword').value = '';
+    document.getElementById('confirmPassword').value = '';
+    
+    // Test: if the new password works
+    sessionStorage.setItem('adminLoggedIn', 'true');
+  }
+
+  // --- Login with Enter key ---
+  document.addEventListener('DOMContentLoaded', function() {
+    checkSession();
+    document.getElementById('passwordInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') login();
+    });
+  });
+
+  /**
+   * ============================================================
+   * DASHBOARD CONTROLLER
+   * ============================================================
+   */
+
+  // --- NAVIGATION ---
+  document.querySelectorAll('.sidebar-nav a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const tab = this.dataset.tab;
+      switchTab(tab);
+    });
+  });
+
+  function switchTab(tab) {
+    document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+    document.querySelector(`.sidebar-nav a[data-tab="${tab}"]`)?.classList.add('active');
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    const target = document.getElementById(`tab-${tab}`);
+    if (target) target.classList.add('active');
+    const titles = {
+      dashboard: ['Dashboard', 'Make changes and publish them live in 2 minutes!'],
+      content: ['Content Editor', 'Edit your landing page copy'],
+      stats: ['Statistics', 'Configure global data and numbers'],
+      checkout: ['Checkout Configuration', 'Connect your payment provider'],
+      pixel: ['Meta Pixel', 'Track conversions from Meta ads'],
+      settings: ['Settings', 'Site-wide configuration & password']
+    };
+    const [title, sub] = titles[tab] || ['Dashboard', ''];
+    document.getElementById('pageTitle').textContent = title;
+    document.getElementById('pageSubtitle').textContent = sub;
+  }
+
+  // --- TOGGLE ---
+  let pixelActive = true;
+  function togglePixel() {
+    pixelActive = !pixelActive;
+    const el = document.getElementById('pixelToggle');
+    const dot = el.querySelector('div');
+    el.style.background = pixelActive ? 'var(--deep-emerald)' : '#d4cfc5';
+    dot.style.left = pixelActive ? '22px' : '2px';
+  }
+
+  // --- STATS PREVIEW ---
+  function updateStatsPreview() {
+    const total = parseInt(document.getElementById('statTotalMuslims').value) || 0;
+    const understand = parseInt(document.getElementById('statUnderstand').value) || 0;
+    document.getElementById('statVisitors').textContent = total > 0 ? (total / 1000000).toFixed(1) + 'M' : '0';
+    document.getElementById('statConversion').textContent = total > 0 ? ((understand / total) * 100).toFixed(1) + '%' : '0%';
+    document.getElementById('statSales').textContent = total > 0 ? Math.round(total * 0.0001) : '0';
+    document.getElementById('statRevenue').textContent = total > 0 ? '$' + (Math.round(total * 0.0001) * 14.99).toFixed(0) : '$0';
+  }
+  document.querySelectorAll('#statTotalMuslims, #statUnderstand, #statTranslate').forEach(el => {
+    el.addEventListener('input', updateStatsPreview);
+  });
+  updateStatsPreview();
+
+  // --- GET ALL SETTINGS ---
+  function getConfig() {
+    return {
+      hero: {
+        headline: document.getElementById('heroHeadline').value,
+        subheadline: document.getElementById('heroSubheadline').value,
+        cta: document.getElementById('heroCta').value
+      },
+      reflection: {
+        headline: document.getElementById('reflectionHeadline').value,
+        question: document.getElementById('reflectionQuestion').value,
+        hope: document.getElementById('reflectionHope').value
+      },
+      final: {
+        headline: document.getElementById('finalHeadline').value,
+        cta: document.getElementById('finalCta').value
+      },
+      stats: {
+        totalMuslims: parseInt(document.getElementById('statTotalMuslims').value) || 0,
+        understand: parseInt(document.getElementById('statUnderstand').value) || 0,
+        translate: parseInt(document.getElementById('statTranslate').value) || 0,
+        source: document.getElementById('statSource').value
+      },
+      bigIdea: {
+        words: document.getElementById('bigWords').value,
+        coverage: document.getElementById('bigCoverage').value,
+        themes: document.getElementById('bigThemes').value
+      },
+      checkout: {
+        url: document.getElementById('checkoutUrl').value,
+        provider: document.getElementById('paymentProvider').value,
+        price: document.getElementById('productPrice').value
+      },
+      pixel: {
+        id: document.getElementById('pixelId').value,
+        active: pixelActive,
+        events: {
+          pageView: document.getElementById('evPageView').checked,
+          viewContent: document.getElementById('evViewContent').checked,
+          initiateCheckout: document.getElementById('evInitiateCheckout').checked
+        }
+      },
+      settings: {
+        title: document.getElementById('siteTitle').value,
+        description: document.getElementById('siteMeta').value,
+        canonical: document.getElementById('siteCanonical').value
+      }
+    };
+  }
+
+  // --- SAVE ---
+  function saveAll() {
+    const data = getConfig();
+    localStorage.setItem('landingPageConfig', JSON.stringify(data));
+    const btn = document.querySelector('.topbar-actions .btn-primary');
+    const original = btn.textContent;
+    btn.textContent = '✅ Saved!';
+    btn.style.background = '#27ae60';
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.style.background = '';
+    }, 2000);
+    console.log('📦 Config saved:', data);
+  }
+
+  // --- LOAD ---
+  function loadConfig() {
+    const saved = localStorage.getItem('landingPageConfig');
+    if (!saved) return;
+    try {
+      const data = JSON.parse(saved);
+      document.getElementById('heroHeadline').value = data.hero?.headline || '';
+      document.getElementById('heroSubheadline').value = data.hero?.subheadline || '';
+      document.getElementById('heroCta').value = data.hero?.cta || '';
+      document.getElementById('reflectionHeadline').value = data.reflection?.headline || '';
+      document.getElementById('reflectionQuestion').value = data.reflection?.question || '';
+      document.getElementById('reflectionHope').value = data.reflection?.hope || '';
+      document.getElementById('finalHeadline').value = data.final?.headline || '';
+      document.getElementById('finalCta').value = data.final?.cta || '';
+      document.getElementById('statTotalMuslims').value = data.stats?.totalMuslims || 1900000000;
+      document.getElementById('statUnderstand').value = data.stats?.understand || 300000000;
+      document.getElementById('statTranslate').value = data.stats?.translate || 1600000000;
+      document.getElementById('statSource').value = data.stats?.source || 'SOURCE TO BE ADDED';
+      document.getElementById('bigWords').value = data.bigIdea?.words || '300';
+      document.getElementById('bigCoverage').value = data.bigIdea?.coverage || '70%';
+      document.getElementById('bigThemes').value = data.bigIdea?.themes || '5';
+      document.getElementById('checkoutUrl').value = data.checkout?.url || 'YOUR_CHECKOUT_LINK_HERE';
+      document.getElementById('paymentProvider').value = data.checkout?.provider || 'gumroad';
+      document.getElementById('productPrice').value = data.checkout?.price || '$14.99';
+      document.getElementById('pixelId').value = data.pixel?.id || 'YOUR_META_PIXEL_ID';
+      if (data.pixel?.active !== undefined) {
+        pixelActive = data.pixel.active;
+        const el = document.getElementById('pixelToggle');
+        const dot = el.querySelector('div');
+        el.style.background = pixelActive ? 'var(--deep-emerald)' : '#d4cfc5';
+        dot.style.left = pixelActive ? '22px' : '2px';
+      }
+      document.getElementById('siteTitle').value = data.settings?.title || '';
+      document.getElementById('siteMeta').value = data.settings?.description || '';
+      document.getElementById('siteCanonical').value = data.settings?.canonical || 'https://YOUR-DOMAIN.com/';
+      updateStatsPreview();
+    } catch(e) { console.warn('Could not load config:', e); }
+  }
+
+  // --- DOWNLOAD SCRIPT.JS ---
+  function downloadScriptJS() {
+    saveAll();
+    const config = getConfig();
+    
+    const scriptContent = `/**
+ * ============================================================
+ * GENERATED SCRIPT.JS — DO NOT EDIT DIRECTLY
+ * Edit in admin.html dashboard and download this file
+ * ============================================================
+ */
+
+// --- CHECKOUT ---
+const CHECKOUT_URL = "${config.checkout.url}";
+
+// --- GLOBAL STATISTICS ---
+const GLOBAL_STATS = {
+    totalMuslims: ${config.stats.totalMuslims},
+    muslimsWhoUnderstandQuranArabic: ${config.stats.understand},
+    muslimsWhoDoNotUnderstandQuranArabic: ${config.stats.translate},
+    sourceName: "${config.stats.source}",
+    sourceURL: ""
+};
+
+// --- META ADS CAMPAIGN ---
+const CAMPAIGN_CONFIG = {
+    headline: "${config.hero.headline.replace(/"/g, '\\"')}",
+    subheadline: "${config.hero.subheadline.replace(/"/g, '\\"')}",
+    ctaText: "${config.hero.cta.replace(/"/g, '\\"')}"
+};
+
+// --- META PIXEL ---
+const META_PIXEL_ID = "${config.pixel.id}";
+const PIXEL_ACTIVE = ${config.pixel.active};
+const TRACK_EVENTS = {
+    pageView: ${config.pixel.events.pageView},
+    viewContent: ${config.pixel.events.viewContent},
+    initiateCheckout: ${config.pixel.events.initiateCheckout}
+};
+
+// --- CONTENT SETTINGS ---
+const CONTENT = {
+    hero: {
+        headline: "${config.hero.headline.replace(/"/g, '\\"')}",
+        subheadline: "${config.hero.subheadline.replace(/"/g, '\\"')}",
+        cta: "${config.hero.cta.replace(/"/g, '\\"')}"
+    },
+    reflection: {
+        headline: "${config.reflection.headline.replace(/"/g, '\\"')}",
+        question: "${config.reflection.question.replace(/"/g, '\\"')}",
+        hope: "${config.reflection.hope.replace(/"/g, '\\"')}"
+    },
+    final: {
+        headline: "${config.final.headline.replace(/"/g, '\\"')}",
+        cta: "${config.final.cta.replace(/"/g, '\\"')}"
+    },
+    bigIdea: {
+        words: "${config.bigIdea.words}",
+        coverage: "${config.bigIdea.coverage}",
+        themes: "${config.bigIdea.themes}"
+    },
+    price: "${config.checkout.price}"
+};
+
+// --- SITE SETTINGS ---
+const SITE_SETTINGS = {
+    title: "${config.settings.title.replace(/"/g, '\\"')}",
+    description: "${config.settings.description.replace(/"/g, '\\"')}",
+    canonical: "${config.settings.canonical}"
+};
+
+console.log('✅ 300 Words — Loaded with dashboard settings!');
+
+/**
+ * ============================================================
+ * UTILITY FUNCTIONS
+ * ============================================================
+ */
+
+function captureUTMParameters() {
+    const params = new URLSearchParams(window.location.search);
+    const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+    utmKeys.forEach(key => {
+        const value = params.get(key);
+        if (value) sessionStorage.setItem(key, value);
+    });
+}
+
+function getUTMParameters() {
+    const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+    const utmData = {};
+    utmKeys.forEach(key => {
+        const value = sessionStorage.getItem(key);
+        if (value) utmData[key] = value;
+    });
+    return utmData;
+}
+
+function getCheckoutURL() {
+    let url = CHECKOUT_URL;
+    const utm = getUTMParameters();
+    const params = new URLSearchParams();
+    Object.keys(utm).forEach(key => {
+        if (utm[key]) params.set(key, utm[key]);
+    });
+    const queryString = params.toString();
+    if (queryString) {
+        url += (url.includes('?') ? '&' : '?') + queryString;
+    }
+    return url;
+}
+
+function trackEvent(eventName, params = {}) {
+    console.log(\`[TRACK] \${eventName}\`, params);
+    if (typeof fbq !== 'undefined' && META_PIXEL_ID !== "YOUR_META_PIXEL_ID" && PIXEL_ACTIVE) {
+        fbq('track', eventName, params);
+    }
+}
+
+function trackPageView() { if (TRACK_EVENTS.pageView) trackEvent('PageView'); }
+function trackViewContent() { if (TRACK_EVENTS.viewContent) trackEvent('ViewContent', { content_name: 'Understand Al-Quran With 300 Words', content_type: 'product' }); }
+function trackInitiateCheckout() { if (TRACK_EVENTS.initiateCheckout) trackEvent('InitiateCheckout', { content_name: 'Understand Al-Quran With 300 Words', content_type: 'product' }); }
+
+// --- SETUP CTAs ---
+function setupCTAs() {
+    document.querySelectorAll('a[href="#"], .btn, .btn-primary, .btn-gold, .btn-hero, .btn-final, .btn-sticky, .header-cta').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            const isCTA = this.classList.contains('btn') || this.classList.contains('header-cta') || this.classList.contains('btn-sticky');
+            if (isCTA && CHECKOUT_URL !== "YOUR_CHECKOUT_LINK_HERE") {
+                e.preventDefault();
+                trackInitiateCheckout();
+                const url = getCheckoutURL();
+                if (url && url !== "YOUR_CHECKOUT_LINK_HERE") {
+                    window.location.href = url;
+                } else {
+                    document.getElementById('finalcta')?.scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (this.getAttribute('href') === '#') {
+                e.preventDefault();
+                document.getElementById('finalcta')?.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+}
+
+// --- NUMBER COUNTER ---
+function animateNumber(element, target, duration = 2000) {
+    const startTime = performance.now();
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(0 + (target - 0) * eased);
+        if (target >= 1000000000) element.textContent = (current / 1000000000).toFixed(1) + 'B+';
+        else if (target >= 1000000) element.textContent = (current / 1000000).toFixed(1) + 'M';
+        else element.textContent = current.toLocaleString();
+        if (progress < 1) requestAnimationFrame(update);
+        else {
+            if (target >= 1000000000) element.textContent = (target / 1000000000).toFixed(1) + 'B+';
+            else if (target >= 1000000) element.textContent = (target / 1000000).toFixed(1) + 'M';
+            else element.textContent = target.toLocaleString();
+        }
+    }
+    requestAnimationFrame(update);
+}
+
+// --- PIE CHART ---
+function updatePieChart(understand, translate) {
+    const total = understand + translate;
+    if (total === 0) { document.querySelector('.pie-center').textContent = '0%'; return; }
+    const understandPercent = (understand / total) * 100;
+    const translatePercent = (translate / total) * 100;
+    const pieUnderstand = document.getElementById('pieUnderstand');
+    const pieTranslate = document.getElementById('pieTranslate');
+    const pieCenter = document.querySelector('.pie-center');
+    const uAngle = (understandPercent / 100) * 360;
+    const uRad = (uAngle - 90) * Math.PI / 180;
+    const uX = 50 + 50 * Math.cos(uRad);
+    const uY = 50 + 50 * Math.sin(uRad);
+    const tAngle = 360 - (translatePercent / 100) * 360;
+    const tRad = (tAngle - 90) * Math.PI / 180;
+    const tX = 50 + 50 * Math.cos(tRad);
+    const tY = 50 + 50 * Math.sin(tRad);
+    if (understandPercent > 0) {
+        pieUnderstand.style.clipPath = \`polygon(50% 50%, 50% 0%, \${uX}% \${uY}%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 50% 0%)\`;
+        pieUnderstand.style.transform = 'rotate(0deg)';
+    }
+    if (translatePercent > 0) {
+        pieTranslate.style.clipPath = \`polygon(50% 50%, 50% 0%, \${tX}% \${tY}%, 0% 0%, 0% 100%, 100% 100%, 100% 0%, 50% 0%)\`;
+        pieTranslate.style.transform = 'rotate(0deg)';
+    }
+    pieCenter.textContent = Math.round(understandPercent) + '%';
+}
+
+// --- BAR CHART ---
+function updateBarChart(total, understand, translate) {
+    const maxValue = Math.max(total, understand, translate);
+    if (maxValue === 0) return;
+    const barTotal = document.getElementById('barTotal');
+    const barUnderstand = document.getElementById('barUnderstand');
+    const barTranslate = document.getElementById('barTranslate');
+    const barTotalLabel = document.getElementById('barTotalLabel');
+    const barUnderstandLabel = document.getElementById('barUnderstandLabel');
+    const barTranslateLabel = document.getElementById('barTranslateLabel');
+    setTimeout(() => {
+        barTotal.style.width = (total / maxValue * 100) + '%';
+        barUnderstand.style.width = (understand / maxValue * 100) + '%';
+        barTranslate.style.width = (translate / maxValue * 100) + '%';
+    }, 300);
+    const fmt = n => n >= 1000000000 ? (n/1000000000).toFixed(1)+'B' : n >= 1000000 ? (n/1000000).toFixed(1)+'M' : n >= 1000 ? (n/1000).toFixed(1)+'K' : n.toString();
+    barTotalLabel.textContent = fmt(total);
+    barUnderstandLabel.textContent = fmt(understand);
+    barTranslateLabel.textContent = fmt(translate);
+}
+
+// --- HEADER SCROLL ---
+function setupHeader() {
+    const header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => {
+        header?.classList.toggle('scrolled', window.scrollY > 50);
+    });
+}
+
+// --- STICKY CTA ---
+function setupStickyCTA() {
+    const stickyCta = document.getElementById('stickyCta');
+    const hero = document.getElementById('hero');
+    const finalCta = document.getElementById('finalcta');
+    if (!stickyCta || !hero || !finalCta) return;
+    window.addEventListener('scroll', () => {
+        const heroBottom = hero.offsetTop + hero.offsetHeight;
+        const finalTop = finalCta.offsetTop;
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+        if (scrollY > heroBottom - 100 && scrollY < finalTop - windowHeight) {
+            stickyCta.classList.add('visible');
+        } else {
+            stickyCta.classList.remove('visible');
+        }
+    });
+}
+
+// --- FAQ ---
+function setupFAQ() {
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const expanded = this.getAttribute('aria-expanded') === 'true';
+            document.querySelectorAll('.faq-question').forEach(other => {
+                if (other !== this) other.setAttribute('aria-expanded', 'false');
+            });
+            this.setAttribute('aria-expanded', !expanded);
+        });
+        btn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); }
+        });
+    });
+}
+
+// --- SCROLL REVEAL ---
+function setupScrollReveal() {
+    const elements = document.querySelectorAll('.theme-card, .benefit-card, .sample-card, .step, .testimonial-card, .infographic-card');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    elements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+}
+
+// --- SCROLL TRACKING ---
+let scrollTracked = { 25: false, 50: false, 75: false, 100: false };
+function trackScroll() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = Math.round((scrollTop / docHeight) * 100);
+    [25, 50, 75, 100].forEach(threshold => {
+        if (scrollPercent >= threshold && !scrollTracked[threshold]) {
+            scrollTracked[threshold] = true;
+            trackEvent('ScrollDepth', { percentage: threshold });
+        }
+    });
+}
+
+// --- INIT ---
+function init() {
+    captureUTMParameters();
+    trackPageView();
+    setTimeout(trackViewContent, 2000);
+    setupCTAs();
+    setupHeader();
+    setupStickyCTA();
+    setupFAQ();
+    setupScrollReveal();
+    window.addEventListener('scroll', trackScroll, { passive: true });
+    
+    const stats = GLOBAL_STATS;
+    const total = stats.totalMuslims || 1900000000;
+    const understand = stats.muslimsWhoUnderstandQuranArabic || 300000000;
+    const translate = stats.muslimsWhoDoNotUnderstandQuranArabic || 1600000000;
+    const counterEl = document.getElementById('populationCounter');
+    if (counterEl) animateNumber(counterEl, total);
+    const sourceEl = document.getElementById('sourceName');
+    if (sourceEl) sourceEl.textContent = stats.sourceName || "SOURCE TO BE ADDED";
+    updatePieChart(understand, translate);
+    updateBarChart(total, understand, translate);
+    
+    console.log('🔹 300 Words — Landing Page Loaded with Dashboard Settings');
+}
+
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+else init();
+`;
+    
+    const blob = new Blob([scriptContent], { type: 'application/javascript' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'script.js';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    const btn = document.querySelector('.publish-box .btn');
+    const original = btn.textContent;
+    btn.textContent = '✅ Downloaded! Replace script.js on your website!';
+    btn.classList.add('pop');
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.classList.remove('pop');
+    }, 3000);
+  }
+
+  // --- PREVIEW ---
+  function previewPage() {
+    window.open('index.html', '_blank');
+  }
+
+  // --- TEST CHECKOUT ---
+  function testCheckout() {
+    const url = document.getElementById('checkoutUrl').value;
+    if (!url || url === 'YOUR_CHECKOUT_LINK_HERE') {
+      alert('⚠️ Please enter a valid checkout URL first.');
+      return;
+    }
+    window.open(url, '_blank');
+  }
+
+  // --- EXPORT / IMPORT / RESET ---
+  function exportConfig() {
+    const data = localStorage.getItem('landingPageConfig');
+    if (!data) { alert('No configuration found. Save your settings first.'); return; }
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'landing-page-config.json';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function importConfig() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    input.onchange = function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        try {
+          const data = JSON.parse(ev.target.result);
+          localStorage.setItem('landingPageConfig', JSON.stringify(data));
+          loadConfig();
+          alert('✅ Configuration imported successfully!');
+        } catch (err) {
+          alert('❌ Invalid JSON file.');
+        }
+      };
+      reader.readAsText(file);
+    };
+    input.click();
+  }
+
+  function resetConfig() {
+    if (!confirm('Are you sure you want to reset all settings to default? This cannot be undone.')) return;
+    localStorage.removeItem('landingPageConfig');
+    location.reload();
+  }
+
+  // --- AUTO-SAVE ---
+  let saveTimeout;
+  document.querySelectorAll('.form-control, .form-check input, select').forEach(el => {
+    el.addEventListener('input', () => {
+      clearTimeout(saveTimeout);
+      saveTimeout = setTimeout(saveAll, 2000);
+    });
+    el.addEventListener('change', () => {
+      clearTimeout(saveTimeout);
+      saveTimeout = setTimeout(saveAll, 2000);
+    });
+  });
+
+  console.log('🔐 300 Words Admin Dashboard loaded with password protection.');
+</script>
+
+</body>
+</html>
