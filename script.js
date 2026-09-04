@@ -6,12 +6,12 @@
  */
 
 // --- CASHFREE PAYMENT GATEWAY ---
-const CHECKOUT_URL = "https://sandbox.cashfree.com/pg/checkout";
+const CHECKOUT_URL = "https://api.cashfree.com/pg";
 const CASHFREE_APP_ID = "1084130b5b83e67546bfbb985b50314801";
 const CASHFREE_SECRET = "cfsk_ma_prod_b8f3b4fbbd019b28a5179057bd86920f_2a42caaf";
 const CASHFREE_MODE = "production";
 const CASHFREE_CURRENCY = "INR";
-const CASHFREE_RETURN_URL = "https://YOUR-DOMAIN.com/thank-you";
+const CASHFREE_RETURN_URL = "https://nahmed-marketing.github.io/Understand-Quran-with-300words/thank-you.html";
 
 // --- PRODUCT ---
 const PRODUCT_PRICE = 299;
