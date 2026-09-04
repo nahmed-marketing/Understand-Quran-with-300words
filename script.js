@@ -6,12 +6,12 @@
  */
 
 // --- CASHFREE PAYMENT GATEWAY ---
-const CHECKOUT_URL = "https://api.cashfree.com/pg";
+const CHECKOUT_URL = " https://www.cashfree.com/pg/checkout";
 const CASHFREE_APP_ID = "1084130b5b83e67546bfbb985b50314801";
 const CASHFREE_SECRET = "cfsk_ma_prod_b8f3b4fbbd019b28a5179057bd86920f_2a42caaf";
 const CASHFREE_MODE = "production";
 const CASHFREE_CURRENCY = "INR";
-const CASHFREE_RETURN_URL = "https://nahmed-marketing.github.io/Understand-Quran-with-300words/thank-you.html";
+const CASHFREE_RETURN_URL = "https://masterlibraries/thank-you.html";
 
 // --- PRODUCT ---
 const PRODUCT_PRICE = 299;
@@ -70,7 +70,7 @@ const CONTENT = {
 const SITE_SETTINGS = {
     title: "Understand Al-Quran With 300 Words | Learn Qur'anic Vocabulary",
     description: "Learn 300 carefully selected Qur'anic words through meaningful themes, Arabic vocabulary, Roman Urdu meanings, English meanings, and example ayahs.",
-    canonical: "https://YOUR-DOMAIN.com/"
+    canonical: "https://masterlibraries.com/"
 };
 
 console.log('✅ 300 Words — Loaded with Cashfree settings!');
