@@ -360,7 +360,7 @@
   // --- Download PDF Function ---
   function downloadPDF() {
     // Option 1: If you have a real PDF file uploaded
-    // window.location.href = 'assets/understand-al-quran-300-words.pdf';
+    // window.location.href = 'assets/understand-al-quran-300-words.pdf.pdf';
 
     // Option 2: Generate a sample PDF (for demo)
     // For now, we'll show a message and provide a link
@@ -368,7 +368,7 @@
     const originalText = btn.innerHTML;
 
     // Check if we have a real PDF
-    const pdfUrl = 'assets/understand-al-quran-300-words.pdf';
+    const pdfUrl = 'assets/understand-al-quran-300-words.pdf.pdf';
 
     // Try to fetch the PDF to see if it exists
     fetch(pdfUrl, { method: 'HEAD' })
